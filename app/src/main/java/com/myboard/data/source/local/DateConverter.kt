@@ -1,4 +1,4 @@
-package com.myboard.data.source.local.dao
+package com.myboard.data.source.local
 
 import androidx.room.TypeConverter
 import com.myboard.util.DateUtil
