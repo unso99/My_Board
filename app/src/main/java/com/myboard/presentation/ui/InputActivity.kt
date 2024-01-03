@@ -1,4 +1,4 @@
-package com.myboard
+package com.myboard.presentation.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
