@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.myboard.data.model.ContentEntity
+import com.myboard.data.model.entity.ContentEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -14,10 +14,10 @@ interface ContentDao {
     fun selectAll() : Flow<List<ContentEntity>>
 
     @Delete
-    suspend fun delete(item :ContentEntity)
+    suspend fun delete(item : ContentEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(item :ContentEntity)
+    suspend fun insert(item : ContentEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(items : List<ContentEntity>)
