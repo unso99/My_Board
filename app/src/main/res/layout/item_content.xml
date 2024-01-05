@@ -7,9 +7,14 @@
         <variable
             name="item"
             type="com.myboard.domain.model.Content" />
+        <variable
+            name="handler"
+            type="com.myboard.presentation.ui.MainActivity.Handler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:onClick="@{()-> handler.onClick(item)}"
+        android:onLongClick="@{()->handler.onLongClick(item)}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"

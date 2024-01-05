@@ -6,15 +6,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.myboard.databinding.ItemContentBinding
 import com.myboard.domain.model.Content
+import com.myboard.presentation.ui.MainActivity
 import com.myboard.presentation.ui.list.viewholder.ContentViewHolder
 
-class ListAdapter() : ListAdapter<Content, ContentViewHolder>(diffCallback) {
+class ListAdapter(private val handler : MainActivity.Handler) : ListAdapter<Content, ContentViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentViewHolder {
         return ContentViewHolder(
             ItemContentBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
-            )
+            ), handler
         )
     }
 
