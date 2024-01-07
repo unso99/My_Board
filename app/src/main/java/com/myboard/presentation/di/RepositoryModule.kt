@@ -2,8 +2,8 @@ package com.myboard.presentation.di
 
 import com.myboard.data.source.local.dao.ContentDao
 import com.myboard.data.source.remote.api.ContentService
-import com.myboard.domain.repository.ContentRepository
-import com.myboard.domain.repository.ContentRepositoryImpl
+import com.myboard.data.repository.ContentRepository
+import com.myboard.data.repository.ContentRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

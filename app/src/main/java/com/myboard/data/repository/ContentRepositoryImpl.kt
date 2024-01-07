@@ -1,4 +1,4 @@
-package com.myboard.domain.repository
+package com.myboard.data.repository
 
 import com.myboard.data.mapper.ContentMapper.toContent
 import com.myboard.data.mapper.ContentMapper.toEntity
@@ -13,14 +13,14 @@ import javax.inject.Inject
 
 class ContentRepositoryImpl @Inject constructor(
     private val contentService: ContentService,
-    private val contentDao : ContentDao
-) : ContentRepository{
+    private val contentDao: ContentDao
+) : ContentRepository {
     override suspend fun save(item: Content): Boolean {
-        return try{
+        return try {
             contentService.saveItem(item.toRequest())
             contentDao.insert(item.toEntity())
             true
-        }catch (e : IOException){
+        } catch (e: IOException) {
             false
         }
     }
@@ -30,22 +30,34 @@ class ContentRepositoryImpl @Inject constructor(
             contentService.updateItem(item.toRequest())
             contentDao.insert(item.toEntity())
             true
-        }catch (e : IOException){
+        } catch (e: IOException) {
+            false
+        }
+    }
+
+    override suspend fun delete(item: Content): Boolean {
+        return try {
+            item.id?.let { id ->
+                contentService.deleteItem(id)
+            }
+            contentDao.delete(item.toEntity())
+            true
+        } catch (e: IOException) {
             false
         }
     }
 
     override fun loadList(): Flow<List<Content>> {
         return flow {
-            contentDao.selectAll().collect{list ->
-                emit(//room db 조회
-                    list.map { it.toContent() }
-                )
-            }
+//            contentDao.selectAll().collect{list ->
+//                emit(//room db 조회
+//                    list.map { it.toContent() }
+//                )
+//            }
             emit(//api 통신을 통한 디비 조회
                 try {
                     contentService.getList().data.map { it.toContent() }
-                }catch (e : IOException){
+                } catch (e: IOException) {
                     emptyList()
                 }
             )
