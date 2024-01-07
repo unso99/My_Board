@@ -13,6 +13,8 @@ data class ContentEntity(
     @PrimaryKey(false)
     val id : Int,
     @ColumnInfo
+    var nickName : String,
+    @ColumnInfo
     var title : String,
     @ColumnInfo
     var content : String,

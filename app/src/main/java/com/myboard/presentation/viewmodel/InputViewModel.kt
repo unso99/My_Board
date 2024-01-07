@@ -19,7 +19,7 @@ class InputViewModel : ViewModel() {
 
     fun initItem(item: Content) {
         this.item = item
-        nickname.value = item.nickname
+        nickname.value = item.nickName
         title.value = item.title
         content.value = item.content
     }
