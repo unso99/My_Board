@@ -1,5 +1,6 @@
 package com.myboard.presentation.di
 
+import com.myboard.data.source.local.dao.ContentDao
 import com.myboard.data.source.remote.api.ContentService
 import com.myboard.domain.repository.ContentRepository
 import com.myboard.domain.repository.ContentRepositoryImpl
@@ -16,6 +17,7 @@ object RepositoryModule {
     @Provides
     @ViewModelScoped
     fun providesContentRepository(
-        contentService: ContentService
-    ) : ContentRepository = ContentRepositoryImpl(contentService)
+        contentService: ContentService,
+        contentDao: ContentDao
+    ) : ContentRepository = ContentRepositoryImpl(contentService,contentDao)
 }
