@@ -32,7 +32,7 @@ class InputViewModel @Inject constructor(
         content.value = item.content
     }
 
-    fun insertData(item : Content){
+    fun insertData(){
         val nicknameValue = nickname.value
         val titleValue = title.value
         val contentValue= content.value

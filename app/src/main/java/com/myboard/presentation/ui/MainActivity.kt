@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             AlertDialog.Builder(this@MainActivity)
                 .setTitle("정말 삭제하시겠습니까?")
                 .setPositiveButton("네") { _, _ ->
-
+                    viewModel.deleteItem(item)
                 }
                 .setNegativeButton("아니오") { _, _ ->
 
