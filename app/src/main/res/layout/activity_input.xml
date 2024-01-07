@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.myboard.presentation.viewmodel.InputViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="제목"
+                android:text="@={viewModel.title}"
                 android:inputType="text"
                 tools:text="제목">
 
@@ -51,6 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="내용"
+                android:text="@={viewModel.content}"
                 android:inputType="text"
                 tools:text="내용"></com.google.android.material.textfield.TextInputEditText>
 
@@ -72,6 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="글쓴이"
+                android:text="@={viewModel.nickname}"
                 android:inputType="text"
                 tools:text="글쓴이">
 
@@ -89,6 +94,7 @@
             android:paddingEnd="16dp"
             android:paddingBottom="8dp"
             android:text="입력완료"
+            android:onClick="@{() -> viewModel.insertData()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
