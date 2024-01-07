@@ -39,4 +39,15 @@ object ContentMapper {
         likeCount = likeCount ?: 0,
         viewCount = viewCount ?: 0
     )
+
+    //entity를 content로 변경
+    fun ContentEntity.toContent() = Content(
+        id = id,
+        nickName = nickName,
+        title = title,
+        content = content,
+        createdDate = createdDate,
+        likeCount = likeCount,
+        viewCount = viewCount
+    )
 }
