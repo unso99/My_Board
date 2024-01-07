@@ -8,4 +8,6 @@ class ContentUseCase @Inject constructor(
     private val contentRepository: ContentRepository
 ) {
     suspend fun save(item:Content) = contentRepository.save(item)
+
+    fun loadList() = contentRepository.loadList()
 }
