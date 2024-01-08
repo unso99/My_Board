@@ -1,3 +1,5 @@
+package com.myboard.presentation.di
+
 import com.google.gson.GsonBuilder
 import com.myboard.util.DateUtil
 import dagger.Module
