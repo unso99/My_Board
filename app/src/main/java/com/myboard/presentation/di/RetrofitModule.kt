@@ -47,7 +47,7 @@ object RetrofitModule {
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://localhost:3000")
+            .baseUrl("http://192.168.45.200:3030/")
             .addConverterFactory(gsonConverterFactory)
             .client(client.build())
             .build()
