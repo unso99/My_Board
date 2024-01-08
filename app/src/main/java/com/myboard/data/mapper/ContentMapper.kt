@@ -50,4 +50,15 @@ object ContentMapper {
         likeCount = likeCount,
         viewCount = viewCount
     )
+
+    //dto를 entity로 변경
+    fun ContentDto.toEntity() = ContentEntity(
+        id = id ?: -1,
+        nickName = nickName,
+        title = title,
+        content = content,
+        createdDate = createdDate ?: Date(),
+        likeCount = likeCount ?: 0,
+        viewCount = viewCount ?: 0
+    )
 }
