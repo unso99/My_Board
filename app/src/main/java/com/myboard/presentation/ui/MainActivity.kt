@@ -2,6 +2,7 @@ package com.myboard.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
@@ -38,11 +39,14 @@ class MainActivity : AppCompatActivity() {
     private fun observeViewModel() {
         lifecycleScope.launch {
             viewModel.contentList.flowWithLifecycle(lifecycle, Lifecycle.State.RESUMED)
-                .collectLatest {
+                .collect {
                     binding.apply {
                         progressBar.isVisible = false
                         emptyTextView.isVisible = it.isEmpty()
                         recyclerView.isVisible = it.isEmpty()
+                    }
+                    it.forEach {
+                        Log.e("content","$it")
                     }
                     adapter.submitList(it)
                 }

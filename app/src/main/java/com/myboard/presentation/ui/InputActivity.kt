@@ -23,6 +23,11 @@ class InputActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        (intent.getSerializableExtra(ITEM) as? Content)?.let {
+            viewModel.initItem(it)
+        }
+        observeViewModel()
     }
 
     override fun onSupportNavigateUp(): Boolean {

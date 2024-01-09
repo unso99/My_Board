@@ -10,7 +10,7 @@ object ContentMapper {
     //content를 dto로 변환
     fun Content.toRequest() = ContentDto(
         id = id,
-        nickName = nickName,
+        nickname = nickname,
         title = title,
         content = content,
         createdDate = createdDate,
@@ -21,7 +21,7 @@ object ContentMapper {
     //content를 room entity로 변경
     fun Content.toEntity() = ContentEntity(
         id = id ?: -1,
-        nickName = nickName,
+        nickname = nickname,
         title = title,
         content = content,
         createdDate = createdDate,
@@ -32,7 +32,7 @@ object ContentMapper {
     //contentDto를 content로 변경
     fun ContentDto.toContent() = Content(
         id = id ?: -1,
-        nickName = nickName,
+        nickname = nickname,
         title = title,
         content = content,
         createdDate = createdDate ?: Date(),
@@ -43,7 +43,7 @@ object ContentMapper {
     //entity를 content로 변경
     fun ContentEntity.toContent() = Content(
         id = id,
-        nickName = nickName,
+        nickname = nickname,
         title = title,
         content = content,
         createdDate = createdDate,
@@ -54,7 +54,7 @@ object ContentMapper {
     //dto를 entity로 변경
     fun ContentDto.toEntity() = ContentEntity(
         id = id ?: -1,
-        nickName = nickName,
+        nickname = nickname,
         title = title,
         content = content,
         createdDate = createdDate ?: Date(),

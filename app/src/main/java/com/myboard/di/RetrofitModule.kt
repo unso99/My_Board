@@ -1,4 +1,4 @@
-package com.myboard.presentation.di
+package com.myboard.di
 
 import com.google.gson.GsonBuilder
 import com.myboard.util.DateUtil
@@ -47,7 +47,7 @@ object RetrofitModule {
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.45.200:3030/")
+            .baseUrl("http://192.168.0.151:3030/")
             .addConverterFactory(gsonConverterFactory)
             .client(client.build())
             .build()

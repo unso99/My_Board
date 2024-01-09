@@ -1,4 +1,4 @@
-package com.myboard.presentation.di
+package com.myboard.di
 
 import com.myboard.data.source.remote.api.ContentService
 import dagger.Module

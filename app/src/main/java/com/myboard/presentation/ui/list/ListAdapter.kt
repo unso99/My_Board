@@ -20,7 +20,7 @@ class ListAdapter(private val handler : MainActivity.Handler) : ListAdapter<Cont
     }
 
     override fun onBindViewHolder(holder: ContentViewHolder, position: Int) {
-        holder.bind(currentList[position])
+        holder.bind(getItem(position))
     }
 
     companion object {

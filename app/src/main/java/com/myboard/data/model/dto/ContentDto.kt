@@ -5,7 +5,7 @@ import java.util.Date
 //api 통신을 통해 가져오는 dto
 data class ContentDto(
     val id: Int? = null,
-    val nickName :String,
+    val nickname :String,
     val title: String,
     val content: String,
     val createdDate: Date? = null,

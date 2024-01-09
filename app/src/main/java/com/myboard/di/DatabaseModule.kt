@@ -1,4 +1,4 @@
-package com.myboard.presentation.di
+package com.myboard.di
 
 import android.content.Context
 import androidx.room.Room

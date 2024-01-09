@@ -1,5 +1,6 @@
 package com.myboard.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.myboard.domain.model.Content
 import com.myboard.domain.usecase.ContentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,7 +27,7 @@ class InputViewModel @Inject constructor(
 
     fun initItem(item: Content) {
         this.item = item
-        nickname.value = item.nickName
+        nickname.value = item.nickname
         title.value = item.title
         content.value = item.content
     }
@@ -47,12 +47,12 @@ class InputViewModel @Inject constructor(
         //usecase를 통해 데이터가 추가됨
         viewModelScope.launch(Dispatchers.IO){
             contentUseCase.save(item?.copy(
-                nickName = nicknameValue,
+                nickname = nicknameValue,
                 title = titleValue,
                 content = contentValue
-            ) ?: Content(nickName = nicknameValue, title = titleValue, content = contentValue))
+            ) ?: Content(nickname = nicknameValue, title = titleValue, content = contentValue))
         }.also {
-            _doneEvent.postValue(Pair(true,if(it as Boolean) "완료!" else "저장할 수 없습니다."))
+            _doneEvent.postValue(Pair(true, if(it.isActive) "완료!" else "저장할 수 없습니다."))
         }
     }
 }

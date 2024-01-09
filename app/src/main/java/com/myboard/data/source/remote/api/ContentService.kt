@@ -11,15 +11,15 @@ import retrofit2.http.Path
 
 interface ContentService { //service 실질적으로 api통신을 하는 부분 retrofit으로 통신하는 함수들 정리
 
-    @GET("list")
+    @GET("post")
     suspend fun getList(): ListResponse
 
-    @POST("save")
+    @POST("post")
     suspend fun saveItem(@Body contentDto: ContentDto): ContentResponse
 
-    @POST("update")
+    @POST("post")
     suspend fun updateItem(@Body contentDto: ContentDto): ContentResponse
 
-    @DELETE("{id}")
+    @DELETE("post/{id}")
     suspend fun deleteItem(@Path("id") id: Int): ContentResponse
 }
