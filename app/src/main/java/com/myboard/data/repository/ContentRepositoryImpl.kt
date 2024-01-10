@@ -52,9 +52,7 @@ class ContentRepositoryImpl @Inject constructor(
         return try {
             item.id?.let { id ->
                 contentService.deleteItem(id).also {
-                    if (it.success) {
-                        contentDao.delete(item.toEntity())
-                    }
+                    contentDao.delete(item.toEntity())
                 }
             }
             true
@@ -64,18 +62,18 @@ class ContentRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addLikeCount(item: Content): Boolean {
-        return try{
-            item.id?.let { id->
+        return try {
+            item.id?.let { id ->
                 contentService.addLikeCount(id).also {
-                    if(it.success){
-                        it.data?.let {contentDto ->
+                    if (it.success) {
+                        it.data?.let { contentDto ->
                             contentDao.insert(contentDto.toEntity())
                         }
                     }
                 }
             }
             true
-        } catch (e : IOException){
+        } catch (e: IOException) {
             false
         }
     }
