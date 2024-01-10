@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
 
     inner class Handler {
         fun onClick(item: Content) {
+            viewModel.plusViewCount(item)
             InputActivity.start(this@MainActivity, item)
         }
 

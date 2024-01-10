@@ -76,6 +76,23 @@ class ContentRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun plusViewCount(item: Content): Boolean {
+        return try{
+            item.id?.let { id ->
+                contentService.plusViewCount(id).also{
+                    if(it.success) {
+                        it.data?.let{contentDto ->
+                            contentDao.insert(contentDto.toEntity())
+                        }
+                    }
+                }
+            }
+            true
+        } catch (e : IOException) {
+            false
+        }
+    }
+
     override fun loadList(): Flow<List<Content>> {
         return flow {
             //네트워크가 없을때에도 작동하기 위함

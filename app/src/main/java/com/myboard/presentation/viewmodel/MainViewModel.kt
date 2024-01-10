@@ -42,4 +42,12 @@ class MainViewModel @Inject constructor(
             }
         }
     }
+
+    fun plusViewCount(item : Content){
+        viewModelScope.launch(Dispatchers.IO){
+            contentUseCase.plusViewCount(item).also {
+                _doneEvent.postValue(Pair(it,"입장!"))
+            }
+        }
+    }
 }

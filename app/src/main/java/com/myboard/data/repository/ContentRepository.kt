@@ -14,6 +14,8 @@ interface ContentRepository {
 
     suspend fun plusLikeCount(item : Content) : Boolean
 
+    suspend fun plusViewCount(item : Content) : Boolean
+
     //데이터 조회
     fun loadList() : Flow<List<Content>>
 }

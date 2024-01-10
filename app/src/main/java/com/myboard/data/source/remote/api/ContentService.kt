@@ -26,4 +26,7 @@ interface ContentService { //service 실질적으로 api통신을 하는 부분 
 
     @POST("post/{id}/like")
     suspend fun plusLikeCount(@Path("id") id : Int) : ContentResponse
+
+    @POST("post/{id}/view")
+    suspend fun plusViewCount(@Path("id") id : Int) : ContentResponse
 }

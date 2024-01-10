@@ -15,5 +15,7 @@ class ContentUseCase @Inject constructor(
 
     suspend fun plusLikeCount(item: Content) = contentRepository.plusLikeCount(item)
 
+    suspend fun plusViewCount(item : Content) = contentRepository.plusViewCount(item)
+
     fun loadList() = contentRepository.loadList()
 }

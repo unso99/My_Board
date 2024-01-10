@@ -23,5 +23,5 @@ data class ContentEntity(
     @ColumnInfo
     val likeCount : Int,
     @ColumnInfo
-    val viewCount : Int
+    val viewCount : Int?
 ) : Serializable
