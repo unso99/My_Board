@@ -8,7 +8,6 @@ import com.myboard.domain.model.Content
 import com.myboard.domain.usecase.ContentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -36,9 +35,9 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun addLikeCount(item: Content){
+    fun plusLikeCount(item: Content){
         viewModelScope.launch(Dispatchers.IO){
-            contentUseCase.addLikeCount(item).also {
+            contentUseCase.plusLikeCount(item).also {
                 _doneEvent.postValue(Pair(it,"하트 추가 완료"))
             }
         }

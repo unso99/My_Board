@@ -2,8 +2,6 @@ package com.myboard.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -11,7 +9,6 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.myboard.databinding.ActivityMainBinding
 import com.myboard.domain.model.Content
 import com.myboard.presentation.ui.list.ListAdapter
@@ -82,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         fun onLikeClick(item : Content) {
-            viewModel.addLikeCount(item)
+            viewModel.plusLikeCount(item)
         }
 
     }

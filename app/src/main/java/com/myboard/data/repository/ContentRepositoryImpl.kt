@@ -1,6 +1,5 @@
 package com.myboard.data.repository
 
-import android.util.Log
 import com.myboard.data.mapper.ContentMapper.toContent
 import com.myboard.data.mapper.ContentMapper.toEntity
 import com.myboard.data.mapper.ContentMapper.toRequest
@@ -8,7 +7,6 @@ import com.myboard.data.source.local.dao.ContentDao
 import com.myboard.data.source.remote.api.ContentService
 import com.myboard.domain.model.Content
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
 import javax.inject.Inject
@@ -61,10 +59,10 @@ class ContentRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun addLikeCount(item: Content): Boolean {
+    override suspend fun plusLikeCount(item: Content): Boolean {
         return try {
             item.id?.let { id ->
-                contentService.addLikeCount(id).also {
+                contentService.plusLikeCount(id).also {
                     if (it.success) {
                         it.data?.let { contentDto ->
                             contentDao.insert(contentDto.toEntity())
