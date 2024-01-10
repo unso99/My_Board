@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.contentList
                 .flowWithLifecycle(lifecycle, Lifecycle.State.RESUMED)
-                .collect {
+                .collectLatest {
                     binding.apply {
                         progressBar.isVisible = false
                         emptyTextView.isVisible = it.isEmpty()
@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.doneEvent.observe(this) {
-            Log.e("done",it.first.toString())
             if (it.first) {
                 Toast.makeText(this, it.second, Toast.LENGTH_SHORT).show()
             }
@@ -83,6 +82,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 .show()
             return false
+        }
+
+        fun onLikeClick(item : Content) {
+            viewModel.addLikeCount(item)
         }
 
     }

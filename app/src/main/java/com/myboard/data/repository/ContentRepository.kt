@@ -12,6 +12,8 @@ interface ContentRepository {
 
     suspend fun delete(item : Content)  : Boolean
 
+    suspend fun addLikeCount(item : Content) : Boolean
+
     //데이터 조회
     fun loadList() : Flow<List<Content>>
 }

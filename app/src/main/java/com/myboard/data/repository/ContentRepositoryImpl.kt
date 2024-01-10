@@ -1,5 +1,6 @@
 package com.myboard.data.repository
 
+import android.util.Log
 import com.myboard.data.mapper.ContentMapper.toContent
 import com.myboard.data.mapper.ContentMapper.toEntity
 import com.myboard.data.mapper.ContentMapper.toRequest
@@ -58,6 +59,23 @@ class ContentRepositoryImpl @Inject constructor(
             }
             true
         } catch (e: IOException) {
+            false
+        }
+    }
+
+    override suspend fun addLikeCount(item: Content): Boolean {
+        return try{
+            item.id?.let { id->
+                contentService.addLikeCount(id).also {
+                    if(it.success){
+                        it.data?.let {contentDto ->
+                            contentDao.insert(contentDto.toEntity())
+                        }
+                    }
+                }
+            }
+            true
+        } catch (e : IOException){
             false
         }
     }

@@ -8,6 +8,7 @@ import com.myboard.domain.model.Content
 import com.myboard.domain.usecase.ContentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -27,11 +28,18 @@ class MainViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(5000),
             scope = viewModelScope
         )
-
     fun deleteItem(item : Content){
         viewModelScope.launch(Dispatchers.IO){
             contentUseCase.delete(item).also {
                 _doneEvent.postValue(Pair(it,"삭제 완료"))
+            }
+        }
+    }
+
+    fun addLikeCount(item: Content){
+        viewModelScope.launch(Dispatchers.IO){
+            contentUseCase.addLikeCount(item).also {
+                _doneEvent.postValue(Pair(it,"하트 추가 완료"))
             }
         }
     }
