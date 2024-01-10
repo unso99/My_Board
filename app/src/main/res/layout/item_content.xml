@@ -17,7 +17,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:background="@drawable/item_border"
         android:onClick="@{()-> handler.onClick(item)}"
         android:onLongClick="@{()->handler.onLongClick(item)}">
@@ -66,7 +65,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:drawableStart="@drawable/baseline_favorite_24"
-            android:text="@{item.likeCount}"
+            android:text="@{Integer.toString(item.likeCount)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/nickNameTextView"
             app:layout_constraintTop_toBottomOf="@id/nickNameTextView"
@@ -78,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:drawableStart="@drawable/baseline_remove_red_eye_24"
-            android:text="@{item.viewCount}"
+            android:text="@{Integer.toString(item.viewCount)}"
             app:layout_constraintStart_toEndOf="@id/likeCountTextView"
             app:layout_constraintTop_toTopOf="@id/likeCountTextView"
             tools:text="150" />

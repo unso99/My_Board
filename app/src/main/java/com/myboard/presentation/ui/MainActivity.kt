@@ -3,12 +3,15 @@ package com.myboard.presentation.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.myboard.databinding.ActivityMainBinding
 import com.myboard.domain.model.Content
 import com.myboard.presentation.ui.list.ListAdapter
@@ -20,14 +23,17 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
     private val adapter by lazy { ListAdapter(Handler()) }
+
     private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        binding.view = this
-        binding.recyclerView.adapter = adapter
+        binding = ActivityMainBinding.inflate(layoutInflater).apply {
+            setContentView(root)
+            view = this@MainActivity
+            recyclerView.adapter = adapter
+        }
 
         observeViewModel()
     }
@@ -38,18 +44,26 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         lifecycleScope.launch {
-            viewModel.contentList.flowWithLifecycle(lifecycle, Lifecycle.State.RESUMED)
+            viewModel.contentList
+                .flowWithLifecycle(lifecycle, Lifecycle.State.RESUMED)
                 .collect {
                     binding.apply {
                         progressBar.isVisible = false
                         emptyTextView.isVisible = it.isEmpty()
-                        recyclerView.isVisible = it.isEmpty()
+                        recyclerView.isVisible = it.isNotEmpty()
                     }
                     it.forEach {
                         Log.e("content","$it")
                     }
                     adapter.submitList(it)
                 }
+        }
+
+        viewModel.doneEvent.observe(this) {
+            Log.e("done",it.first.toString())
+            if (it.first) {
+                Toast.makeText(this, it.second, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
