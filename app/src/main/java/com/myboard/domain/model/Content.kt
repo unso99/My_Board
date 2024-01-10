@@ -10,7 +10,7 @@ data class Content(
     val nickname: String,
     val title: String,
     val content: String,
-    val createdDate: Date = Date(),
+    val createdDate: Date? = Date(),
     val likeCount: Int = 0,
     val viewCount: Int = 0,
 ) : Serializable

@@ -52,9 +52,6 @@ class MainActivity : AppCompatActivity() {
                         emptyTextView.isVisible = it.isEmpty()
                         recyclerView.isVisible = it.isNotEmpty()
                     }
-                    it.forEach {
-                        Log.e("content","$it")
-                    }
                     adapter.submitList(it)
                 }
         }

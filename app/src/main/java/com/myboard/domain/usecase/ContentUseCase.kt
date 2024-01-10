@@ -9,6 +9,8 @@ class ContentUseCase @Inject constructor(
 ) {
     suspend fun save(item: Content) = contentRepository.save(item)
 
+    suspend fun update(item : Content) = contentRepository.update(item)
+
     suspend fun delete(item: Content) = contentRepository.delete(item)
 
     suspend fun addLikeCount(item: Content) = contentRepository.addLikeCount(item)

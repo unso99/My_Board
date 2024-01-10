@@ -32,27 +32,40 @@ class InputViewModel @Inject constructor(
         content.value = item.content
     }
 
-    fun insertData(){
+    fun insertData() {
         val nicknameValue = nickname.value
         val titleValue = title.value
-        val contentValue= content.value
-
-        if(nicknameValue.isNullOrBlank() ||
+        val contentValue = content.value
+        Log.e("insertData", titleValue.toString())
+        if (nicknameValue.isNullOrBlank() ||
             titleValue.isNullOrBlank() ||
-             contentValue.isNullOrBlank()){
-            _doneEvent.value = Pair(false,"모든 항목을 입력하셔야 합니다.")
+            contentValue.isNullOrBlank()
+        ) {
+            _doneEvent.value = Pair(false, "모든 항목을 입력하셔야 합니다.")
             return
         }
 
         //usecase를 통해 데이터가 추가됨
-        viewModelScope.launch(Dispatchers.IO){
-            contentUseCase.save(item?.copy(
-                nickname = nicknameValue,
-                title = titleValue,
-                content = contentValue
-            ) ?: Content(nickname = nicknameValue, title = titleValue, content = contentValue))
+        viewModelScope.launch(Dispatchers.IO) {
+            item?.let {
+                contentUseCase.update(
+                    item!!.copy(
+                        nickname = nicknameValue,
+                        title = titleValue,
+                        content = contentValue,
+                        createdDate = null
+                    )
+                )
+            } ?: contentUseCase.save(
+                Content(
+                    nickname = nicknameValue,
+                    title = titleValue,
+                    content = contentValue
+                )
+            )
+
         }.also {
-            _doneEvent.postValue(Pair(true, if(it.isActive) "완료!" else "저장할 수 없습니다."))
+            _doneEvent.postValue(Pair(true, if (it.isActive) "완료!" else "저장할 수 없습니다."))
         }
     }
 }

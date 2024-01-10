@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.myboard.databinding.ItemContentBinding
 import com.myboard.domain.model.Content
 import com.myboard.presentation.ui.MainActivity

@@ -19,7 +19,7 @@ data class ContentEntity(
     @ColumnInfo
     var content : String,
     @ColumnInfo
-    val createdDate : Date,
+    val createdDate : Date?,
     @ColumnInfo
     val likeCount : Int,
     @ColumnInfo

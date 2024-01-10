@@ -6,6 +6,7 @@ import com.myboard.data.model.dto.ListResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -17,7 +18,7 @@ interface ContentService { //service 실질적으로 api통신을 하는 부분 
     @POST("post")
     suspend fun saveItem(@Body contentDto: ContentDto): ContentResponse
 
-    @POST("post")
+    @PATCH("post")
     suspend fun updateItem(@Body contentDto: ContentDto): ContentResponse
 
     @DELETE("post/{id}")

@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.myboard.data.model.entity.ContentEntity
 import com.myboard.data.source.local.dao.ContentDao
 
-@Database(entities = [ContentEntity::class], version = 1)
+@Database(entities = [ContentEntity::class], version = 2)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun contentDao() : ContentDao
