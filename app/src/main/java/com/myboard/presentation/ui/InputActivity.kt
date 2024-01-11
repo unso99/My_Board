@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.myboard.databinding.ActivityInputBinding
 import com.myboard.domain.model.Content
 import com.myboard.presentation.viewmodel.InputViewModel
+import com.myboard.util.PermissionUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,6 +29,7 @@ class InputActivity : AppCompatActivity() {
             viewModel.initItem(it)
         }
         observeViewModel()
+        PermissionUtil.checkPermission(this)
     }
 
     override fun onSupportNavigateUp(): Boolean {
