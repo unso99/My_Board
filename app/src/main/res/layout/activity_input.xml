@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <variable
+            name="view"
+            type="com.myboard.presentation.ui.InputActivity" />
+
         <variable
             name="viewModel"
             type="com.myboard.presentation.viewmodel.InputViewModel" />
@@ -29,8 +34,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="제목"
-                android:text="@={viewModel.title}"
                 android:inputType="text"
+                android:text="@={viewModel.title}"
                 tools:text="제목">
 
                 <requestFocus />
@@ -54,9 +59,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="내용"
-                android:text="@={viewModel.content}"
                 android:inputType="text"
-                tools:text="내용"></com.google.android.material.textfield.TextInputEditText>
+                android:text="@={viewModel.content}"
+                tools:text="내용" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,13 +81,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="글쓴이"
-                android:text="@={viewModel.nickname}"
                 android:inputType="text"
+                android:text="@={viewModel.nickname}"
                 tools:text="글쓴이">
 
             </com.google.android.material.textfield.TextInputEditText>
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="32dp"
+            android:onClick="@{() -> view.onImageClick()}"
+            android:src="@drawable/baseline_image_search_24"
+            app:layout_constraintBottom_toTopOf="@id/confirmButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/writerTextInputLayout" />
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -90,11 +107,11 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.insertData()}"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:paddingBottom="8dp"
             android:text="입력완료"
-            android:onClick="@{() -> viewModel.insertData()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
