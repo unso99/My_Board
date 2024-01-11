@@ -2,11 +2,15 @@ package com.myboard.presentation.ui
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.util.Base64
+import android.util.Base64.NO_WRAP
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +19,8 @@ import com.myboard.domain.model.Content
 import com.myboard.presentation.viewmodel.InputViewModel
 import com.myboard.util.PermissionUtil
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 
 @AndroidEntryPoint
 class InputActivity : AppCompatActivity() {
@@ -24,6 +30,7 @@ class InputActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             uri?.let {
                 Log.e("imageUrl", uri.toString())
+                Log.e("base64", encoding(uri))
                 setImage(uri)
             }
         }
@@ -54,6 +61,24 @@ class InputActivity : AppCompatActivity() {
             Toast.makeText(this, it.second, Toast.LENGTH_SHORT).show()
             if (it.first) finish()
         }
+    }
+
+    private fun encoding(uri: Uri?): String {
+        // Base64 인코딩부분
+        val ins: InputStream? = uri?.let {
+            applicationContext.contentResolver.openInputStream(
+                it
+            )
+        }
+        val img: Bitmap = BitmapFactory.decodeStream(ins)
+        ins?.close()
+        val resized = Bitmap.createScaledBitmap(img, 256, 256, true)
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        resized.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream)
+        val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
+        val outStream = ByteArrayOutputStream()
+        val res: Resources = resources
+        return Base64.encodeToString(byteArray, NO_WRAP)
     }
 
     private fun setImage(uri: Uri) {
