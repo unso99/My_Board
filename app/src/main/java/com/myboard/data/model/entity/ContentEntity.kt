@@ -1,5 +1,6 @@
 package com.myboard.data.model.entity
 
+import android.util.Base64
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -23,5 +24,7 @@ data class ContentEntity(
     @ColumnInfo
     val likeCount : Int,
     @ColumnInfo
-    val viewCount : Int?
+    val viewCount : Int?,
+    @ColumnInfo
+    val img : String?
 ) : Serializable

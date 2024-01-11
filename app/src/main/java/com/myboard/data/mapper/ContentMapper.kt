@@ -15,7 +15,8 @@ object ContentMapper {
         content = content,
         createdDate = createdDate,
         likeCount = likeCount,
-        viewCount = viewCount
+        viewCount = viewCount,
+        img = img
     )
 
     //content를 room entity로 변경
@@ -26,7 +27,8 @@ object ContentMapper {
         content = content,
         createdDate = createdDate,
         likeCount = likeCount,
-        viewCount = viewCount
+        viewCount = viewCount,
+        img = img
     )
 
     //contentDto를 content로 변경
@@ -37,7 +39,8 @@ object ContentMapper {
         content = content,
         createdDate = createdDate ?: Date(),
         likeCount = likeCount ?: 0,
-        viewCount = viewCount ?: 0
+        viewCount = viewCount ?: 0,
+        img = img
     )
 
     //entity를 content로 변경
@@ -48,7 +51,8 @@ object ContentMapper {
         content = content,
         createdDate = createdDate,
         likeCount = likeCount,
-        viewCount = viewCount
+        viewCount = viewCount,
+        img = img
     )
 
     //dto를 entity로 변경
@@ -59,6 +63,7 @@ object ContentMapper {
         content = content,
         createdDate = createdDate ?: Date(),
         likeCount = likeCount ?: 0,
-        viewCount = viewCount ?: 0
+        viewCount = viewCount ?: 0,
+        img = img
     )
 }

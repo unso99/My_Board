@@ -82,6 +82,7 @@ class InputActivity : AppCompatActivity() {
     }
 
     private fun setImage(uri: Uri) {
+        //이미지를 어플에서 넣었을때 작동
         binding.imageView.setImageURI(uri)
     }
 

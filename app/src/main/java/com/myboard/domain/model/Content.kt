@@ -1,6 +1,7 @@
 package com.myboard.domain.model
 
 import android.provider.ContactsContract.CommonDataKinds.Nickname
+import android.util.Base64
 import java.io.Serializable
 import java.util.Date
 
@@ -13,4 +14,5 @@ data class Content(
     val createdDate: Date? = Date(),
     val likeCount: Int = 0,
     val viewCount: Int? = 0,
+    val img : String? = ""
 ) : Serializable
