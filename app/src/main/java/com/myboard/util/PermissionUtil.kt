@@ -21,8 +21,21 @@ object PermissionUtil {
                 loadImage(imageLoadLauncher)
             }
 
+            ContextCompat.checkSelfPermission(
+                activity,
+                Manifest.permission.READ_MEDIA_IMAGES
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                loadImage(imageLoadLauncher)
+            }
+
             activity.shouldShowRequestPermissionRationale(
                 Manifest.permission.READ_EXTERNAL_STORAGE
+            ) -> {
+                showPermissionInfoDialog(activity)
+            }
+
+            activity.shouldShowRequestPermissionRationale(
+                Manifest.permission.READ_MEDIA_IMAGES
             ) -> {
                 showPermissionInfoDialog(activity)
             }
@@ -50,7 +63,7 @@ object PermissionUtil {
     private fun requestReadExternalStorage(activity: Activity) {
         ActivityCompat.requestPermissions(
             activity,
-            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_MEDIA_IMAGES),
             REQUEST_READ_EXTERNAL_STORAGE
         )
     }

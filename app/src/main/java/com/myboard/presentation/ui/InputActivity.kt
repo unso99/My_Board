@@ -46,11 +46,11 @@ class InputActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         (intent.getSerializableExtra(ITEM) as? Content)?.let {
-            Log.e("initItem","$it")
             if(it.img == "") {
                 binding.imageView.setImageResource(R.drawable.baseline_image_search_24)
             } else {
-                // TODO: 그렇지 않다면 서버에 있는 base64를 비트맵으로 바꾸어서 이미지 설정
+                val encodedByte = Base64.decode(it.img,Base64.DEFAULT)
+                binding.imageView.setImageBitmap(BitmapFactory.decodeByteArray(encodedByte,0,encodedByte.size))
             }
             viewModel.initItem(it)
         } ?: binding.imageView.setImageResource(R.drawable.baseline_image_search_24)
@@ -96,7 +96,17 @@ class InputActivity : AppCompatActivity() {
     }
 
     fun onImageClick() {
+        Log.e("imageclick","클릭됨")
         PermissionUtil.checkPermission(this, imageLoadLauncher)
+
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     companion object {
