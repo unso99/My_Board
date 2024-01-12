@@ -26,8 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.myboard.presentation.ui.InputActivity"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.myboard.presentation.ui.InputActivity"/>
     </application>
 
 </manifest>
