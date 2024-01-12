@@ -23,6 +23,7 @@ class InputViewModel @Inject constructor(
     var title = MutableLiveData("")
     var content = MutableLiveData("")
     var viewCount = MutableLiveData(0)
+    var img = MutableLiveData("")
 
     private var item: Content? = null
 
@@ -32,6 +33,7 @@ class InputViewModel @Inject constructor(
         title.value = item.title
         content.value = item.content
         viewCount.value = item.viewCount
+        img.value = item.img
     }
 
     fun insertData() {
@@ -39,6 +41,7 @@ class InputViewModel @Inject constructor(
         val titleValue = title.value
         val contentValue = content.value
         val viewCountValue = viewCount.value?.plus(1)
+        val imgValue = img.value
         Log.e("insertData", titleValue.toString())
         if (nicknameValue.isNullOrBlank() ||
             titleValue.isNullOrBlank() ||
@@ -64,7 +67,8 @@ class InputViewModel @Inject constructor(
                 Content(
                     nickname = nicknameValue,
                     title = titleValue,
-                    content = contentValue
+                    content = contentValue,
+                    img = imgValue
                 )
             )
 

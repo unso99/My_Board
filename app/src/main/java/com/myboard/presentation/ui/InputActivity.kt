@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.myboard.R
 import com.myboard.databinding.ActivityInputBinding
 import com.myboard.domain.model.Content
 import com.myboard.presentation.viewmodel.InputViewModel
@@ -45,6 +46,12 @@ class InputActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         (intent.getSerializableExtra(ITEM) as? Content)?.let {
+            Log.e("initItem","$it")
+            if(it.img == "") {
+                binding.imageView.setImageResource(R.drawable.baseline_image_search_24)
+            } else {
+                // TODO: 그렇지 않다면 서버에 있는 base64를 비트맵으로 바꾸어서 이미지 설정
+            }
             viewModel.initItem(it)
         }
         observeViewModel()
@@ -63,6 +70,13 @@ class InputActivity : AppCompatActivity() {
         }
     }
 
+    private fun setImage(uri: Uri) {
+        //이미지를 어플에서 넣었을때 작동
+        binding.imageView.setImageURI(uri)
+        //서버에 데이터를 보내기 위한 base64로 인코딩
+//        viewModel.img = encoding(uri)
+    }
+
     private fun encoding(uri: Uri?): String {
         // Base64 인코딩부분
         val ins: InputStream? = uri?.let {
@@ -79,11 +93,6 @@ class InputActivity : AppCompatActivity() {
         val outStream = ByteArrayOutputStream()
         val res: Resources = resources
         return Base64.encodeToString(byteArray, NO_WRAP)
-    }
-
-    private fun setImage(uri: Uri) {
-        //이미지를 어플에서 넣었을때 작동
-        binding.imageView.setImageURI(uri)
     }
 
     fun onImageClick() {
