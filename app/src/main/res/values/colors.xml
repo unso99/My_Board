@@ -3,4 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#D3D3D3</color>
+    <color name="half_baked">#92C7CF</color>
+    <color name="sinbad">#AAD7D9</color>
+    <color name="bianca">#FBF9F1</color>
+    <color name="westar">#E5E1DA</color>
+
 </resources>

@@ -19,6 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:background="@drawable/item_border"
         android:onClick="@{()-> handler.onClick(item)}"
         android:onLongClick="@{()->handler.onLongClick(item)}">
@@ -47,7 +48,7 @@
             app:img="@{item.img}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/nickNameTextView"
@@ -64,10 +65,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:textColor="@color/gray"
             app:date="@{item.createdDate}"
-            app:layout_constraintStart_toEndOf="@id/nickNameTextView"
-            app:layout_constraintTop_toTopOf="@id/nickNameTextView"
+            app:layout_constraintStart_toEndOf="@id/viewCountTextView"
+            app:layout_constraintTop_toTopOf="@id/viewCountTextView"
+
             tools:text="22:18" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -77,6 +78,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:drawableStart="@drawable/baseline_favorite_24"
+            android:drawablePadding="8dp"
             android:onClick="@{() -> handler.onLikeClick(item)}"
             android:text="@{Integer.toString(item.likeCount)}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -90,6 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:drawableStart="@drawable/baseline_remove_red_eye_24"
+            android:drawablePadding="8dp"
             android:text="@{Integer.toString(item.viewCount)}"
             app:layout_constraintStart_toEndOf="@id/likeCountTextView"
             app:layout_constraintTop_toTopOf="@id/likeCountTextView"
