@@ -60,7 +60,8 @@ class InputViewModel @Inject constructor(
                         title = titleValue,
                         content = contentValue,
                         createdDate = null,
-                        viewCount = viewCountValue
+                        viewCount = viewCountValue,
+                        img = imgValue
                     )
                 )
             } ?: contentUseCase.save(

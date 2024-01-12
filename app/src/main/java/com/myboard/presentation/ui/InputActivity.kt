@@ -53,7 +53,7 @@ class InputActivity : AppCompatActivity() {
                 // TODO: 그렇지 않다면 서버에 있는 base64를 비트맵으로 바꾸어서 이미지 설정
             }
             viewModel.initItem(it)
-        }
+        } ?: binding.imageView.setImageResource(R.drawable.baseline_image_search_24)
         observeViewModel()
     }
 
@@ -74,7 +74,7 @@ class InputActivity : AppCompatActivity() {
         //이미지를 어플에서 넣었을때 작동
         binding.imageView.setImageURI(uri)
         //서버에 데이터를 보내기 위한 base64로 인코딩
-//        viewModel.img = encoding(uri)
+        viewModel.img.value = encoding(uri)
     }
 
     private fun encoding(uri: Uri?): String {
