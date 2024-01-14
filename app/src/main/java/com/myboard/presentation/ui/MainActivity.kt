@@ -55,7 +55,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.doneEvent.observe(this) {
             if (it.first) {
-                showLikeAnimation()
+                if(it.second == "하트 추가 완료") showLikeAnimation()
+
             }
         }
     }
