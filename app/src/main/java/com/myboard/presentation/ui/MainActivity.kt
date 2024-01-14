@@ -55,8 +55,23 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.doneEvent.observe(this) {
             if (it.first) {
-                Toast.makeText(this, it.second, Toast.LENGTH_SHORT).show()
+                showLikeAnimation()
             }
+        }
+    }
+
+    private fun showLikeAnimation() {
+        binding.apply {
+            heartAnimationView.playAnimation()
+            heartAnimationView.animate()
+                .scaleX(7f)
+                .scaleY(7f)
+                .alpha(0.3f)
+                .withEndAction {
+                    heartAnimationView.scaleX = 0f
+                    heartAnimationView.scaleY = 0f
+                    heartAnimationView.alpha = 1f
+                }.start()
         }
     }
 
@@ -79,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             return false
         }
 
-        fun onLikeClick(item : Content) {
+        fun onLikeClick(item: Content) {
             viewModel.plusLikeCount(item)
         }
 
