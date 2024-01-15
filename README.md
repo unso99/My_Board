@@ -2,7 +2,7 @@
 # MyBoard
 
 ## 완성 예제
-![myBoard](https://github.com/unso99/My_Board/assets/94777814/7a9c4aed-1409-468f-8337-6701104a1899)
+https://github.com/unso99/My_Board/assets/94777814/7a9c4aed-1409-468f-8337-6701104a1899
 
 
 ## 이 프로젝트에서 사용한 기술
